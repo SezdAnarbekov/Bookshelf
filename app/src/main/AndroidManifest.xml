@@ -20,6 +20,8 @@
             android:label="@string/title_activity_catalog"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".RewriterActivity">
+        </activity>
     </application>
 
 </manifest>

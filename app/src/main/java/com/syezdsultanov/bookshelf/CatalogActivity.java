@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -66,7 +65,7 @@ public class CatalogActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 fabMenu.close(true);
-                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+                Intent intent = new Intent(CatalogActivity.this, RewriterActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +94,7 @@ public class CatalogActivity extends AppCompatActivity implements
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Create new intent to go to {@link EditorActivity}
+                // Create new intent to go to {@link RewriterActivity}
                 Intent intent = new Intent(CatalogActivity.this, InfoActivity.class);
 
                 // Form the content URI that represents the specific book that was clicked on,
@@ -106,7 +105,7 @@ public class CatalogActivity extends AppCompatActivity implements
                 // Set the URI on the data field of the intent
                 intent.setData(currentBookUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current book.
+                // Launch the {@link RewriterActivity} to display the data for the current book.
                 startActivity(intent);
             }
         });
@@ -145,7 +144,7 @@ public class CatalogActivity extends AppCompatActivity implements
             startActivity(intent);
             return true;
         } else if (id == R.id.action_manually_add) {
-            Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+            Intent intent = new Intent(CatalogActivity.this, RewriterActivity.class);
             startActivity(intent);
             return true;
         }
