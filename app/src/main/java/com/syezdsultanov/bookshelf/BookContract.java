@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
 public class BookContract {
 
     //The "Content authority" is a name for the entire content provider
-    public static final String CONTENT_AUTHORITY = "com.oomat.kaparov.booklog";
+    public static final String CONTENT_AUTHORITY = "com.syezdsultanov.bookshelf";
     /**
      * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
      * the content provider.

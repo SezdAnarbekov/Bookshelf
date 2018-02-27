@@ -8,6 +8,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.syezdsultanov.bookshelf.BookContract.*;
+
 /**
  * Database helper for Books app. Manages database creation and version management.
  */

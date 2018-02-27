@@ -12,6 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.syezdsultanov.bookshelf.BookContract.*;
+import com.syezdsultanov.bookshelf.UtilsBitmap;
+
 /**
  * {@link BookCursorAdapter} is an adapter for a list or grid view
  * that uses a {@link Cursor} of book data as its data source. This adapter knows

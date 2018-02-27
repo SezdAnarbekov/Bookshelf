@@ -24,10 +24,14 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.syezdsultanov.bookshelf.R;
+import com.syezdsultanov.bookshelf.BookContract.BookEntry;
+import com.syezdsultanov.bookshelf.UtilsBitmap;
 
 public class InformationActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -237,7 +241,7 @@ public class InformationActivity extends AppCompatActivity implements
             // Respond to a click on the "Save" menu option
             case R.id.action_edit_book:
                 // Create new intent to go to {@link EditorActivity}
-                Intent intent = new Intent(InformationActivity.this, EditorActivity.class);
+                Intent intent = new Intent(InformationActivity.this, RewriterActivity.class);
 
                 // Set the URI on the data field of the intent
                 intent.setData(mCurrentBookUri);

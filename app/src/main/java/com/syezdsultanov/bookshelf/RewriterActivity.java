@@ -32,6 +32,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
+import com.syezdsultanov.bookshelf.R;
+import com.syezdsultanov.bookshelf.BookContract.*;
+import com.syezdsultanov.bookshelf.UtilsBitmap;
+import com.syezdsultanov.bookshelf.UtilsReadPermission;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,14 +50,18 @@ import java.io.IOException;
 public class RewriterActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the book data loader */
+    /**
+     * Identifier for the book data loader
+     */
     private static final int EXISTING_BOOK_LOADER = 0;
 
     private static final int CAMERA_PERMISSION = 10;
     private int REQUEST_CAMERA = 0;
     private int SELECT_FILE = 1;
 
-    /** Content URI for the existing book (null if it's a new book) */
+    /**
+     * Content URI for the existing book (null if it's a new book)
+     */
     private Uri mCurrentBookUri;
     private EditText mTitleEditText;
     private EditText mAuthorEditText;
@@ -536,6 +546,7 @@ public class RewriterActivity extends AppCompatActivity implements
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_FILE);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -592,3 +603,4 @@ public class RewriterActivity extends AppCompatActivity implements
                 .fitCenter()
                 .into(mImageView);
     }
+}
