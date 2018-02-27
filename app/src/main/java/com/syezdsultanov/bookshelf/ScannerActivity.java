@@ -205,7 +205,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Uri baseUri = Uri.parse(BOOK_URL + bookISBN);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        return new BookLoader(this, uriBuilder.toString());
+        return new BookAsyncTask(this, uriBuilder.toString());
     }
 
     @Override
