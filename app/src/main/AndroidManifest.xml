@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".RewriterActivity">
         </activity>
+        <activity android:name=".InformationActivity">
+        </activity>
     </application>
 
 </manifest>

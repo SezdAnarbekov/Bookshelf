@@ -95,7 +95,7 @@ public class CatalogActivity extends AppCompatActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // Create new intent to go to {@link RewriterActivity}
-                Intent intent = new Intent(CatalogActivity.this, InfoActivity.class);
+                Intent intent = new Intent(CatalogActivity.this, InformationActivity.class);
 
                 // Form the content URI that represents the specific book that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
