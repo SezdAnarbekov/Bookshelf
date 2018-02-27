@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".InformationActivity">
         </activity>
+        <activity android:name=".ScannerActivity">
+        </activity>
     </application>
 
 </manifest>

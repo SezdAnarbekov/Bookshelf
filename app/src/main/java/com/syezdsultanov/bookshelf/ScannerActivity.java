@@ -1,0 +1,232 @@
+package com.syezdsultanov.bookshelf;
+
+import android.Manifest;
+import android.app.LoaderManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.Loader;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler,
+        LoaderManager.LoaderCallbacks<Book> {
+
+    private static final int CAMERA_PERMISSION = 1;
+    private static final int BOOK_LOADER_ID = 1;
+
+    private static final String BOOK_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+
+    private static final String FLASH_STATE = "FLASH_STATE";
+    private ZXingScannerView mScannerView;
+    private boolean mFlash;
+    private Toolbar mToolbar;
+    private String bookISBN;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION);
+        }
+
+        if(savedInstanceState != null) {
+            mFlash = savedInstanceState.getBoolean(FLASH_STATE, false);
+        } else {
+            mFlash = false;
+        }
+        setContentView(R.layout.activity_scanner);
+
+        mToolbar = (Toolbar) findViewById(R.id.scannerToolbar);
+        mToolbar.setTitle(R.string.scan_toolbar);
+        setSupportActionBar(mToolbar);
+        final ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
+        ViewGroup contentFrame = (ViewGroup) findViewById(R.id.scannerFrame);
+        mScannerView = new ZXingScannerView(this);
+        contentFrame.addView(mScannerView);
+        mScannerView.setResultHandler(this);
+        mScannerView.setAutoFocus(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        MenuItem menuItem;
+
+        if(mFlash) {
+            menuItem = menu.add(Menu.NONE, R.id.menu_simple_add_flash, 0, R.string.menu_flash_on);
+            menuItem.setIcon(R.drawable.ic_flash_on);
+        } else {
+            menuItem = menu.add(Menu.NONE, R.id.menu_simple_add_flash, 0, R.string.menu_flash_off);
+            menuItem.setIcon(R.drawable.ic_flash_off);
+        }
+
+        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.menu_simple_add_flash:
+                mFlash = !mFlash;
+                if(mFlash) {
+                    item.setTitle(R.string.menu_flash_on);
+                    item.setIcon(R.drawable.ic_flash_on);
+                } else {
+                    item.setTitle(R.string.menu_flash_off);
+                    item.setIcon(R.drawable.ic_flash_off);}
+                mScannerView.setFlash(mFlash);
+                return true;
+            case R.id.action_search:
+                searchIsbnDialog();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(FLASH_STATE, mFlash);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this);
+        mScannerView.setAutoFocus(true);
+        mScannerView.setFlash(mFlash);
+        mScannerView.startCamera();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mScannerView.resumeCameraPreview(ScannerActivity.this);
+            }
+        }, 2000);
+        handleSearch(rawResult.getText());
+    }
+
+    private void searchIsbnDialog() {
+        new MaterialDialog.Builder(this)
+                .title(R.string.search_isbn_manually)
+                .titleColorRes(R.color.colorBlackText)
+                .backgroundColorRes(R.color.colorPrimaryText)
+                .contentColorRes(R.color.colorBlackText)
+                .positiveColorRes(R.color.colorAccent)
+                .widgetColorRes(R.color.colorAccent)
+                .inputType(InputType.TYPE_CLASS_NUMBER)
+                .input(R.string.search_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        if (input.toString().equals(""))
+                            dialog.cancel();
+                        else
+                            handleSearch(input.toString());
+
+                    }
+                }).show();
+    }
+
+    private void handleSearch(String query) {
+        bookISBN = query;
+
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Get a reference to the LoaderManager, in order to interact with loaders.
+            LoaderManager loaderManager = getLoaderManager();
+
+            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+            // because this activity implements the LoaderCallbacks interface).
+            loaderManager.initLoader(BOOK_LOADER_ID, null, this);
+
+        } else Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,  String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case CAMERA_PERMISSION:
+                if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(this, "Please grant camera permission to use the QR Scanner", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+        }
+    }
+
+    @Override
+    public Loader<Book> onCreateLoader(int i, Bundle bundle) {
+
+        Uri baseUri = Uri.parse(BOOK_URL + bookISBN);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        return new BookLoader(this, uriBuilder.toString());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Book> loader, Book book) {
+
+        if (!book.isInGoogleBooks())
+            Toast.makeText(this, "No info about this book, ISBN: " + bookISBN + "\nAdd book manually.", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(ScannerActivity.this, EditorActivity.class);
+        intent.putExtra("isInGoogleBooks", book.isInGoogleBooks());
+        intent.putExtra("title", book.getTitle());
+        intent.putExtra("author", book.getAuthor());
+        intent.putExtra("category", book.getCategory());
+        intent.putExtra("pages", String.valueOf(book.getPages()));
+        intent.putExtra("image", book.getImageUrl());
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Book> loader) {
+    }
+
+}
