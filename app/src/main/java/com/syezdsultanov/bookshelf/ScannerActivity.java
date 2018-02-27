@@ -23,6 +23,14 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.syezdsultanov.bookshelf.Book;
+import com.syezdsultanov.bookshelf.BookAsyncTask;
+import com.syezdsultanov.bookshelf.R;
+import com.google.zxing.Result;
+
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler,
         LoaderManager.LoaderCallbacks<Book> {
 
@@ -214,7 +222,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         if (!book.isInGoogleBooks())
             Toast.makeText(this, "No info about this book, ISBN: " + bookISBN + "\nAdd book manually.", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(ScannerActivity.this, EditorActivity.class);
+        Intent intent = new Intent(ScannerActivity.this, RewriterActivity.class);
         intent.putExtra("isInGoogleBooks", book.isInGoogleBooks());
         intent.putExtra("title", book.getTitle());
         intent.putExtra("author", book.getAuthor());

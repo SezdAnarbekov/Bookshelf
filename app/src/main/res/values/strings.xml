@@ -1,4 +1,73 @@
 <resources>
     <string name="app_name">Bookshelf</string>
-    <string name="title_activity_catalog">CatalogActivity</string>
+    <string name="empty_view_title_text">Here can be</string>
+    <string name="empty_view_subtitle_text">your books!</string>
+    <string name="book_title">Title:</string>
+    <string name="book_author">Author(s):</string>
+    <string name="book_category">Category:</string>
+    <string name="book_pages">Pages:</string>
+    <string name="category_priority">Priority:</string>
+    <string name="editor_insert_book_failed">Error with saving book</string>
+    <string name="editor_insert_book_successful">Book saved</string>
+    <string name="editor_update_book_failed">Error with updating book</string>
+    <string name="editor_update_book_successful">Book updated</string>
+    <string name="search_isbn_manually">Search a book by ISBN</string>
+    <string name="input_prefill"></string>
+
+    <!--NavigationBar-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawer_reading">Reading now</string>
+    <string name="drawer_read">To read</string>
+    <string name="drawer_unread">Have read</string>
+    <string name="rate_app">Rate app</string>
+    <string name="do_you_like_this_app">Do you like this app?</string>
+    <string name="folders">Folders</string>
+    <string name="all">All</string>
+
+    <!--Toolbars-->
+    <string name="add_new_book">Add a new book</string>
+    <string name="edit_book">Edit the book</string>
+    <string name="book_info">Book info</string>
+    <string name="scan_toolbar">Scan barcode</string>
+    <string name="scan_a_book">Scan a book</string>
+    <string name="search_hint">Enter ISBN numbers</string>
+    <string name="manually_add">Manually add</string>
+    <string name="menu_flash_off">Flash[OFF]</string>
+    <string name="menu_flash_on">Flash[ON]</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit_book">Edit</string>
+    <string name="action_add_note">Add note</string>
+    <string name="action_set_notification">Set notification</string>
+    <string name="set_current_page">Set current page</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Delete this book?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="editor_delete_book_failed">Error with deleting book</string>
+    <string name="editor_delete_book_successful">Book deleted</string>
+    <string name="toast_require">Book requires a title and pages</string>
+
+    <!--Cover change-->
+    <string name="cover_change_dialog_title">Change book cover from:</string>
+    <string-array name="cover_change_dialog_list">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+    <string name="cover_change_no_camera_app">No Camera app installed!</string>
+
+    <!--InfoActivity reading progress-->
+    <string name="text_reading_progress">Reading progress</string>
+    <string name="text_current_page">Current page:</string>
+    <string name="text_total_pages">Total pages:</string>
+    <string name="text_start_date">Start date:</string>
+    <string name="text_finish_date">Finish date:</string>
+    <string name="set">set</string>
+    <string name="enter_number">Enter number</string>
+    <string name="no_internet_connection">No internet connection</string>
+
+
 </resources>

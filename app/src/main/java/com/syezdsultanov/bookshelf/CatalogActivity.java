@@ -8,7 +8,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +20,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.syezdsultanov.bookshelf.BookCursorAdapter;
+import com.syezdsultanov.bookshelf.R;
+import com.syezdsultanov.bookshelf.BookContract.*;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 /**
  * Displays list of books that were entered and stored in the app.
  */

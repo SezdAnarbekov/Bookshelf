@@ -13,6 +13,9 @@ import android.util.Log;
 
 import com.syezdsultanov.bookshelf.BookContract.*;
 
+import static com.syezdsultanov.bookshelf.BookContract.CONTENT_AUTHORITY;
+import static com.syezdsultanov.bookshelf.BookContract.PATH_BOOKS;
+
 /**
  * {@link ContentProvider} for Book Log app.
  */

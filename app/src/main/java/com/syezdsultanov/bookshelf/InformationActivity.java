@@ -92,7 +92,7 @@ public class InformationActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
+        setContentView(R.layout.activity_information);
 
         //Set title of activity
         setTitle(getString(R.string.book_info));
@@ -382,3 +382,4 @@ public class InformationActivity extends AppCompatActivity implements
         if (d != null) d.setCallback(null);
         mBookImage.setImageDrawable(null);
     }
+}

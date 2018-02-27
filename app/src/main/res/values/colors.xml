@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00bfa5</color>
+    <color name="colorPrimaryDark">#008e76</color>
+    <color name="colorPrimaryLight">#5df2d6</color>
+    <color name="colorAccent">#ff6d00</color>
+    <color name="colorPrimaryText">#FFFFFF</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorBlackText">#000000</color>
+    <color name="colorGrey">#DCDCDC</color>
+
+    <!-- Fab -->
+    <color name="fab_menu_colorNormal">@color/colorAccent</color>
+    <color name="fab_menu_colorPressed">#c43c00</color>
+    <color name="fab_menu_colorRipple">#B3E5FC</color>
+
+    <!--<color name="actionbar_opacity">#33000000</color>-->
+
 </resources>

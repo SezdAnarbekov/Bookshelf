@@ -90,7 +90,7 @@ public class RewriterActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editor);
+        setContentView(R.layout.activity_rewriter);
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new book or editing an existing one.

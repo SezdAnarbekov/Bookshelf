@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.syezdsultanov.bookshelf"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -23,11 +23,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:support-v13:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:support-v13:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.github.clans:fab:1.6.4'
     compile 'me.dm7.barcodescanner:zxing:1.9'
     compile 'com.afollestad.material-dialogs:core:0.9.4.2'
