@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#e5e5e5"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.syezdsultanov.bookshelf.CatalogActivity"
+    tools:context="com.syezdsultanov.bookshelf.activities.CatalogActivity"
     tools:showIn="@layout/activity_catalog">
 
     <ListView
@@ -26,19 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-        <ImageView
-            android:id="@+id/empty_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:src="@drawable/ic_storage_black_48dp"/>
-
         <TextView
             android:id="@+id/empty_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/empty_image"
             android:layout_centerHorizontal="true"
             android:text="@string/empty_view_title_text"
             android:textAppearance="?android:textAppearanceMedium"
@@ -55,6 +46,5 @@
             android:textColor="@color/colorSecondaryText"/>
 
     </RelativeLayout>
-
 
 </RelativeLayout>

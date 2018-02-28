@@ -1,7 +1,7 @@
-<resources>
-    <string name="app_name">Bookshelf</string>
-    <string name="empty_view_title_text">Here can be</string>
-    <string name="empty_view_subtitle_text">your books!</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">BookShelf</string>
+    <string name="empty_view_title_text">Download</string>
+    <string name="empty_view_subtitle_text">books!</string>
     <string name="book_title">Title:</string>
     <string name="book_author">Author(s):</string>
     <string name="book_category">Category:</string>
@@ -20,9 +20,8 @@
     <string name="drawer_reading">Reading now</string>
     <string name="drawer_read">To read</string>
     <string name="drawer_unread">Have read</string>
-    <string name="rate_app">Rate app</string>
-    <string name="do_you_like_this_app">Do you like this app?</string>
-    <string name="folders">Folders</string>
+    <string name="do_you_like_this_app" tools:keep="@string/do_you_like_this_app">Do you like this app?</string>
+    <string name="folders" tools:keep="@string/folders">Folders</string>
     <string name="all">All</string>
 
     <!--Toolbars-->
@@ -38,8 +37,6 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="action_edit_book">Edit</string>
-    <string name="action_add_note">Add note</string>
-    <string name="action_set_notification">Set notification</string>
     <string name="set_current_page">Set current page</string>
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
     <string name="discard">Discard</string>
@@ -68,6 +65,4 @@
     <string name="set">set</string>
     <string name="enter_number">Enter number</string>
     <string name="no_internet_connection">No internet connection</string>
-
-
 </resources>

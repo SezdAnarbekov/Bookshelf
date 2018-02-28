@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.syezdsultanov.bookshelf.CatalogActivity"
+            android:name="com.syezdsultanov.bookshelf.activities.CatalogActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,35 +26,35 @@
             </intent-filter>
         </activity>
     <activity
-        android:name="com.syezdsultanov.bookshelf.InformationActivity"
+        android:name="com.syezdsultanov.bookshelf.activities.InformationActivity"
         android:label="@string/book_info"
-        android:parentActivityName="com.syezdsultanov.bookshelf.CatalogActivity">
+        android:parentActivityName="com.syezdsultanov.bookshelf.activities.CatalogActivity">
 
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.syezdsultanov.bookshelf.CatalogActivity"/>
+            android:value="com.syezdsultanov.bookshelf.activities.CatalogActivity"/>
     </activity>
     <activity
-        android:name="com.syezdsultanov.bookshelf.RewriterActivity"
+        android:name="com.syezdsultanov.bookshelf.activities.RewriterActivity"
         android:label="@string/add_new_book"
-        android:parentActivityName="com.syezdsultanov.bookshelf.CatalogActivity">
+        android:parentActivityName="com.syezdsultanov.bookshelf.activities.CatalogActivity">
 
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.syezdsultanov.bookshelf.CatalogActivity"/>
+            android:value="com.syezdsultanov.bookshelf.activities.CatalogActivity"/>
     </activity>
     <activity
-        android:name="com.syezdsultanov.bookshelf.ScannerActivity"
+        android:name="com.syezdsultanov.bookshelf.activities.ScannerActivity"
         android:label="@string/scan_a_book"
-        android:parentActivityName="com.syezdsultanov.bookshelf.CatalogActivity"
+        android:parentActivityName="com.syezdsultanov.bookshelf.activities.CatalogActivity"
         android:screenOrientation="portrait"
         android:theme="@style/AppOverlayTheme">
     </activity>
 
     <provider
-        android:name="com.syezdsultanov.bookshelf.BookProvider"
+        android:name="com.syezdsultanov.bookshelf.db.BookProvider"
         android:authorities="com.syezdsultanov.bookshelf"
         android:exported="false">
     </provider>
